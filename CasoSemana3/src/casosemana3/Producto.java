@@ -8,7 +8,7 @@ package casosemana3;
  *
  * @author USUARIO
  */
-public class Producto {
+public final class Producto {
     
     private String nombre;
     private String categoria;
@@ -23,7 +23,14 @@ public class Producto {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try {
+            if(nombre == null || nombre.equals("")) {
+                throw new Exception("El nombre no puede estar vacío");
+            }
+            this.nombre = nombre;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getCategoria() {
@@ -31,7 +38,14 @@ public class Producto {
     }
 
     public void setCategoria(String categoria) {
-        this.categoria = categoria;
+        try {
+            if(categoria == null || categoria.equals("")) {
+                throw new Exception("La categoria no puede estar vacía");
+            }
+            this.categoria = categoria;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public double getPrecio() {
@@ -39,7 +53,14 @@ public class Producto {
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        try {
+            if(precio <= 0) {
+                throw new Exception("El precio debe ser mayor a 0");
+            }
+            this.precio = precio;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public int getStock() {
@@ -47,7 +68,14 @@ public class Producto {
     }
 
     public void setStock(int stock) {
-        this.stock = stock;
+        try {
+            if(stock < 0) {
+                throw new Exception("El stock no puede ser negativo");
+            }
+            this.stock = stock;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getMarca() {
@@ -55,7 +83,14 @@ public class Producto {
     }
 
     public void setMarca(String marca) {
-        this.marca = marca;
+        try {
+            if(marca == null || marca.equals("")) {
+                throw new Exception("La marca no puede estar vacía");
+            }
+            this.marca = marca;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getCodigo() {
@@ -78,8 +113,8 @@ public class Producto {
     }
 
     public Producto(String nombre, String categoria) {
-        this.nombre = nombre;
-        this.categoria = categoria;
+        setNombre(nombre);
+        setCategoria(categoria);
     }
 
     public static String generar_codigo() {
@@ -96,5 +131,4 @@ public class Producto {
                 " MARCA: " + this.marca +
                 " CODIGO: " + this.codigo);
     }
-    
 }
